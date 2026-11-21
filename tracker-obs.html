@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>RetroAchievements Overlay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="alert">
+  <div class="frame"><div class="inner">
+    <img id="badge" alt="">
+    <div class="txt">
+      <div class="hdr"><b id="hdr">Conquista desbloqueada</b><span class="mode" id="mode">Hardcore</span></div>
+      <h2 id="title"></h2>
+      <p id="desc"></p>
+      <div id="game"></div>
+    </div>
+    <div id="pts"></div>
+    <div class="timer"><i id="timer"></i></div>
+  </div></div>
+</div>
+
+<div id="mastery">
+  <div class="m-icon"><img id="m-img" alt=""></div>
+  <div class="m-txt"><div id="m-title"></div><div id="m-sub"></div></div>
+</div>
+
+<div id="objective">
+  <img id="o-badge" alt="">
+  <div class="o-body">
+    <div class="o-label"><span id="o-lab">Objetivo atual</span><span id="o-queue"></span></div>
+    <div id="o-title"></div>
+    <div id="o-desc"></div>
+    <div class="o-meta"><span id="o-pts"></span><span id="o-rar"></span></div>
+  </div>
+  <div id="o-done">✓ Concluída!</div>
+</div>
+
+<div id="progress">
+  <div class="icon"><img id="gicon" alt=""></div>
+  <div class="pb">
+    <div id="gtitle"></div>
+    <div id="gstate"></div>
+    <div class="bar"><i id="bsoft"></i><i id="bhard"></i></div>
+    <div class="meta"><span id="pcount"><b id="pnum"></b><span id="ptot"></span></span><span id="ppct"></span></div>
+  </div>
+</div>
+
+<div id="status"></div>
+<div id="hint"></div>
+
+<div id="intro">
+  <img id="intro-logo" src="Assets/img/Logo-trackQuest.png" alt="" onerror="this.style.display='none'">
+  <div class="i-txt">
+    <h3>Você está no modo Interagir</h3>
+    <p>Clique dentro desta janela e aperte a tecla <kbd>E</kbd> para <b>editar</b> o overlay.</p>
+    <p>Você poderá arrastar e redimensionar o painel e o alerta, e escolher cores e efeitos.</p>
+    <p><kbd>T</kbd> testa um alerta de conquista · <kbd>M</kbd> testa a masterização</p>
+  </div>
+</div>
+
+<div id="picker">
+  <div class="pk-head"><span id="pk-title">Escolher objetivo</span><button type="button" class="chip" id="pk-close">Fechar</button></div>
+  <div class="pk-ctl">
+    <input id="pk-search" type="text" placeholder="Buscar conquista" autocomplete="off" spellcheck="false">
+    <button type="button" class="chip" id="pk-sort"></button>
+    <button type="button" class="chip" id="pk-clear">Limpar fila</button>
+  </div>
+  <div id="pk-list"></div>
+  <div class="pk-foot">Clique para adicionar à fila (vale a ordem dos cliques) e clique de novo para remover. A primeira da fila aparece no painel.</div>
+</div>
+
+<div id="settings">
+  <div class="st-head"><span>Configurações</span><button type="button" class="chip" id="st-close">Fechar</button></div>
+  <div class="st-presets" id="st-presets"></div>
+  <div class="st-tabs" id="st-tabs"></div>
+  <div id="st-body"></div>
+  <div id="st-conta">
+    <div class="b-snd" id="bar-snd"></div>
+  <div class="b-cred">
+    <label>Usuário <input id="in-user" type="text" autocomplete="off" spellcheck="false"></label>
+    <label>API Key <input id="in-key" type="password" autocomplete="off" spellcheck="false"></label>
+    <button type="button" class="chip" id="cred-save">Salvar e conectar</button>
+    <span id="cred-msg"></span>
+  </div>
+  </div>
+</div>
+
+<div id="bar">
+  <div class="b-help">
+    <span><b>Mover</b> arraste o painel</span>
+    <span><b>Tamanho</b> canto branco ou roda do mouse</span>
+    <span><b>Configurações</b> efeitos, cores, bordas e sons</span>
+    <span><b>E</b> sair</span>
+    <span><b>R</b> restaurar tudo</span>
+  </div>
+  <div class="b-fx">
+    <button type="button" class="chip" id="st-open">Configurações</button>
+    <button type="button" class="chip" id="obj-open">Escolher objetivo</button>
+    <span class="snd-name" id="obj-info"></span>
+  </div>
+  <div class="b-foot" id="bar-foot"></div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
