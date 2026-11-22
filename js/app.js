@@ -3,22 +3,22 @@
 const q = new URLSearchParams(location.search);
 const saved = (() => { try { return JSON.parse(localStorage.getItem('ra-overlay-cred') || '{}'); } catch (e) { return {}; } })();
 const CFG = {
-  user:     q.get('user')  || saved.user || 'blumzeira',
-  key:      q.get('key')   || saved.key  || 'VPiHkcacXfHr0Z8y47soDcoytSy5WMn9',
-  poll:    (+q.get('poll') || 8)  * 1000,   // checa conquistas a cada N s
-  time:    (+q.get('time') || 7)  * 1000,   // tempo do alerta na tela
-  pos:      q.get('pos')   || 'bl',          // alerta: tl | tr | bl | br
-  ppos:     q.get('ppos')  || 'tl',
-  opos:     q.get('opos')  || 'tr',          // painel de objetivo: tl | tr | bl | br          // progresso: tl | tr | bl | br
+  user: q.get('user') || saved.user || 'API DO SEU USUÁRIO',
+  key: q.get('key') || saved.key || 'API DA SUA CONTA',
+  poll: (+q.get('poll') || 8) * 1000,   // checa conquistas a cada N s
+  time: (+q.get('time') || 7) * 1000,   // tempo do alerta na tela
+  pos: q.get('pos') || 'bl',          // alerta: tl | tr | bl | br
+  ppos: q.get('ppos') || 'tl',
+  opos: q.get('opos') || 'tr',          // painel de objetivo: tl | tr | bl | br          // progresso: tl | tr | bl | br
   progress: q.get('progress') !== '0',       // &progress=0 esconde o card
-  sound:    q.get('sound') !== '0',          // &sound=0 silencia
-  hcOnly:   q.get('hc') === '1',             // &hc=1 só alerta hardcore
-  scale:   +q.get('scale') || 1,             // &scale=1.25 aumenta tudo
-  demo:     q.get('demo') === '1',
-  debug:    q.get('debug') === '1',   // &debug=1 mostra o aviso do som nos testes (T / M / demo)
-  vol:     (q.has('vol') ? +q.get('vol') : 0.8),         // &vol=0.5 (0 a 1)
-  sfx:      q.get('sfx')       || null,   // caminho do arquivo (senão procura Assets/sound/conquista.ogg/.mp3/.wav)
-  sfxMaster:q.get('sfxmaster') || null    // idem para Assets/sound/masterizado.ogg/.mp3/.wav
+  sound: q.get('sound') !== '0',          // &sound=0 silencia
+  hcOnly: q.get('hc') === '1',             // &hc=1 só alerta hardcore
+  scale: +q.get('scale') || 1,             // &scale=1.25 aumenta tudo
+  demo: q.get('demo') === '1',
+  debug: q.get('debug') === '1',   // &debug=1 mostra o aviso do som nos testes (T / M / demo)
+  vol: (q.has('vol') ? +q.get('vol') : 0.8),         // &vol=0.5 (0 a 1)
+  sfx: q.get('sfx') || null,   // caminho do arquivo (senão procura Assets/sound/conquista.ogg/.mp3/.wav)
+  sfxMaster: q.get('sfxmaster') || null    // idem para Assets/sound/masterizado.ogg/.mp3/.wav
 };
 /* ====================================== */
 
@@ -176,8 +176,10 @@ function renderProgress(g, presence) {
     // intervalo entre a 1ª e a última conquista hardcore (usado se você não digitar o tempo de execução)
     const ds = Object.values(g.Achievements || {})
       .map(x => Date.parse((x.DateEarnedHardcore || '').replace(' ', 'T') + 'Z')).filter(n => !isNaN(n));
-    pendingMastery = { special: true, Title: g.Title, IconPath: g.ImageIcon, HardcoreMode: 1,
-                       spanMs: ds.length ? Math.max(...ds) - Math.min(...ds) : 0 };
+    pendingMastery = {
+      special: true, Title: g.Title, IconPath: g.ImageIcon, HardcoreMode: 1,
+      spanMs: ds.length ? Math.max(...ds) - Math.min(...ds) : 0
+    };
     pollAchievements();   // garante que a última conquista entre na fila antes do banner
   }
   lastGame = { id: g.ID, hc };
@@ -217,10 +219,10 @@ function chime(special, report) {
     const fail = () => { if (!moved) { moved = true; tryNext(i + 1); } };
     a.addEventListener('error', fail, { once: true });
     a.play().then(() => { if (report) say(`Tocando: ${nameOf(list[i])} ✓`); })
-            .catch(err => {
-              if (err && err.name === 'NotAllowedError') { if (report) say('O navegador bloqueou o som: clique na página e tente de novo'); return; }
-              fail();
-            });
+      .catch(err => {
+        if (err && err.name === 'NotAllowedError') { if (report) say('O navegador bloqueou o som: clique na página e tente de novo'); return; }
+        fail();
+      });
   };
   tryNext(0);
 }
@@ -238,7 +240,7 @@ function beep(special) {
       g.gain.exponentialRampToValueAtTime(0.0001, t + 0.28);
       o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + 0.3);
     });
-  } catch (e) {}
+  } catch (e) { }
 }
 
 /* ---------- modo demo ---------- */
@@ -248,7 +250,8 @@ const demoSamples = [
 ];
 let demoI = 0;
 function demo() {
-  renderProgress({ ID: 0, Title: 'Super Mario World', ConsoleName: 'SNES', ImageIcon: '/Images/000001.png',
+  renderProgress({
+    ID: 0, Title: 'Super Mario World', ConsoleName: 'SNES', ImageIcon: '/Images/000001.png',
     NumAchievements: 57, NumAwardedToUser: 21, NumAwardedToUserHardcore: 14, NumDistinctPlayers: 2000,
     Achievements: {
       101: { ID: 101, Title: 'Mestre das Plataformas', Description: 'Termine a fase 3 sem perder nenhuma vida.', Points: 25, BadgeName: '00001', NumAwarded: 300, DisplayOrder: 1 },
@@ -256,7 +259,8 @@ function demo() {
       103: { ID: 103, Title: 'Velocista', Description: 'Complete o mundo 1 em menos de 5 minutos.', Points: 15, BadgeName: '00003', NumAwarded: 150, DisplayOrder: 3 },
       104: { ID: 104, Title: 'Sem Pressa', Description: 'Encontre todas as saídas secretas do jogo.', Points: 50, BadgeName: '00004', NumAwarded: 40, DisplayOrder: 4 },
       105: { ID: 105, Title: 'Primeiros Passos', Description: 'Termine a primeira fase.', Points: 5, BadgeName: '00005', NumAwarded: 1900, DisplayOrder: 5, DateEarned: '2026-01-01 10:00:00' }
-    } }, 'Mundo 2 · Vidas: 5');
+    }
+  }, 'Mundo 2 · Vidas: 5');
   const fire = () => enqueue({ ...demoSamples[demoI++ % demoSamples.length], test: true });
   fire(); setInterval(fire, CFG.time + 3000); setInterval(pulse, 7000);
 }
@@ -265,8 +269,10 @@ window.testAlert = () => {
   enqueue(s);
   if (curGame && s.AchievementID) objDone(String(curGame.ID), String(s.AchievementID), s.Title);   // testa o "Concluída!" do objetivo
 };
-window.testMastery = () => enqueue({ special: true, test: true, Title: 'Classic NES Series: Super Mario Bros.',
-  IconPath: '/Images/000001.png', HardcoreMode: 1, manualTime: '12:16:51' });
+window.testMastery = () => enqueue({
+  special: true, test: true, Title: 'Classic NES Series: Super Mario Bros.',
+  IconPath: '/Images/000001.png', HardcoreMode: 1, manualTime: '12:16:51'
+});
 addEventListener('keydown', e => {
   if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
   const k = e.key.toLowerCase();
@@ -276,10 +282,10 @@ addEventListener('keydown', e => {
 
 /* ---------- modo edição: arrastar e redimensionar (botão "Interagir" do OBS) ---------- */
 const loadLayout = () => { try { return JSON.parse(localStorage.getItem('ra-overlay-layout') || '{}'); } catch (e) { return {}; } };
-const saveLayout = () => { try { localStorage.setItem('ra-overlay-layout', JSON.stringify(layout)); } catch (e) {} };
+const saveLayout = () => { try { localStorage.setItem('ra-overlay-layout', JSON.stringify(layout)); } catch (e) { } };
 const layout = loadLayout();
 if (q.has('ax')) layout.alert = { x: +q.get('ax'), y: +q.get('ay'), s: +q.get('as') || CFG.scale };
-if (q.has('px')) layout.prog  = { x: +q.get('px'), y: +q.get('py'), s: +q.get('ps') || CFG.scale };
+if (q.has('px')) layout.prog = { x: +q.get('px'), y: +q.get('py'), s: +q.get('ps') || CFG.scale };
 
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const getS = el => parseFloat(el.style.getPropertyValue('--s')) || CFG.scale;
@@ -289,15 +295,15 @@ function place(el, p) {
   el.style.right = el.style.bottom = 'auto';
   el.style.transformOrigin = 'top left';
   el.style.left = p.x + 'px';
-  el.style.top  = p.y + 'px';
+  el.style.top = p.y + 'px';
   el.style.setProperty('--s', p.s || CFG.scale);
   if (p.w) el.style.width = p.w + 'px';
   const w = el.getBoundingClientRect().width;
   el.style.setProperty('--from', p.x + w / 2 < innerWidth / 2 ? '-130%' : '130%');
 }
 if (layout.alert) place(alertEl, layout.alert);
-if (layout.prog)  place(progEl, layout.prog);
-if (layout.obj)   place(objEl, layout.obj);
+if (layout.prog) place(progEl, layout.prog);
+if (layout.obj) place(objEl, layout.obj);
 
 // passa o painel para posição por esquerda/topo antes de mexer nele
 function anchor(el, name) {
@@ -307,30 +313,42 @@ function anchor(el, name) {
 }
 
 /* efeitos escolhidos no modo edição (guardados junto com a posição) */
-const BORDERS = [['default','Padrão'],['none','Sem borda'],['square','Cantos retos'],['round','Arredondada']];
-const SHOW = [['on','Visível'],['off','Escondido']];
-const SIZES = [['s','Pequena'],['n','Normal'],['l','Grande'],['xl','Enorme']];
+const BORDERS = [['default', 'Padrão'], ['none', 'Sem borda'], ['square', 'Cantos retos'], ['round', 'Arredondada']];
+const SHOW = [['on', 'Visível'], ['off', 'Escondido']];
+const SIZES = [['s', 'Pequena'], ['n', 'Normal'], ['l', 'Grande'], ['xl', 'Enorme']];
 const FX = [
-  { key: 'in',     el: alertEl, attr: 'in',    group: 'Alerta', label: 'Entrada', param: 'ain',
-    opts: [['slide','Deslizar'],['zoom','Zoom'],['drop','Cair'],['flip','Girar'],['fade','Surgir']] },
-  { key: 'shine',  el: alertEl, attr: 'shine', group: 'Alerta', label: 'Brilho',  param: 'ashine',
-    opts: [['sweep','Reflexo'],['pulse','Pulsar'],['none','Nenhum']] },
-  { key: 'abd',    el: alertEl, attr: 'bd',    group: 'Alerta', label: 'Borda',   param: 'abd', opts: BORDERS },
-  { key: 'pshow',  el: progEl,  attr: 'on',    group: 'Painel de dados', label: 'Exibir painel', param: 'pon', opts: SHOW },
-  { key: 'theme',  el: progEl,  attr: 'theme', group: 'Painel de dados', label: 'Cores', param: 'ptheme',
-    opts: [['neon','Neon'],['fogo','Fogo'],['verde','Verde'],['rosa','Rosa'],['escuro','Escuro']] },
-  { key: 'light',  el: progEl,  attr: 'light', group: 'Painel de dados', label: 'Luz do ícone', param: 'plight',
-    opts: [['orbit','Circulando'],['pulse','Pulsando'],['none','Parada']] },
-  { key: 'blink',  el: progEl,  attr: 'blink', group: 'Painel de dados', label: 'Piscada ao atualizar', param: 'pblink',
-    opts: [['soft','Suave'],['strong','Forte'],['none','Nenhuma']] },
-  { key: 'pbd',    el: progEl,  attr: 'bd',    group: 'Painel de dados', label: 'Borda', param: 'pbd', opts: BORDERS },
-  { key: 'obj',    el: objEl,   attr: 'on',    group: 'Objetivo', label: 'Exibir painel', param: 'oobj', opts: SHOW },
-  { key: 'ostyle', el: objEl,   attr: 'style', group: 'Objetivo', label: 'Estilo', param: 'ostyle',
-    opts: [['glass','Translúcido'],['solid','Escuro sólido'],['light','Claro'],['neon','Neon'],['minimal','Minimalista']] },
-  { key: 'obd',    el: objEl,   attr: 'bd',    group: 'Objetivo', label: 'Borda', param: 'obd', opts: BORDERS },
-  { key: 'fl',     el: objEl,   attr: 'fl',    group: 'Objetivo', label: 'Fonte do rótulo', param: 'ofl', opts: SIZES, def: 'n' },
-  { key: 'ft',     el: objEl,   attr: 'ft',    group: 'Objetivo', label: 'Fonte do título', param: 'oft', opts: SIZES, def: 'n' },
-  { key: 'fd',     el: objEl,   attr: 'fd',    group: 'Objetivo', label: 'Fonte da descrição e dados', param: 'ofd', opts: SIZES, def: 'n' }
+  {
+    key: 'in', el: alertEl, attr: 'in', group: 'Alerta', label: 'Entrada', param: 'ain',
+    opts: [['slide', 'Deslizar'], ['zoom', 'Zoom'], ['drop', 'Cair'], ['flip', 'Girar'], ['fade', 'Surgir']]
+  },
+  {
+    key: 'shine', el: alertEl, attr: 'shine', group: 'Alerta', label: 'Brilho', param: 'ashine',
+    opts: [['sweep', 'Reflexo'], ['pulse', 'Pulsar'], ['none', 'Nenhum']]
+  },
+  { key: 'abd', el: alertEl, attr: 'bd', group: 'Alerta', label: 'Borda', param: 'abd', opts: BORDERS },
+  { key: 'pshow', el: progEl, attr: 'on', group: 'Painel de dados', label: 'Exibir painel', param: 'pon', opts: SHOW },
+  {
+    key: 'theme', el: progEl, attr: 'theme', group: 'Painel de dados', label: 'Cores', param: 'ptheme',
+    opts: [['neon', 'Neon'], ['fogo', 'Fogo'], ['verde', 'Verde'], ['rosa', 'Rosa'], ['escuro', 'Escuro']]
+  },
+  {
+    key: 'light', el: progEl, attr: 'light', group: 'Painel de dados', label: 'Luz do ícone', param: 'plight',
+    opts: [['orbit', 'Circulando'], ['pulse', 'Pulsando'], ['none', 'Parada']]
+  },
+  {
+    key: 'blink', el: progEl, attr: 'blink', group: 'Painel de dados', label: 'Piscada ao atualizar', param: 'pblink',
+    opts: [['soft', 'Suave'], ['strong', 'Forte'], ['none', 'Nenhuma']]
+  },
+  { key: 'pbd', el: progEl, attr: 'bd', group: 'Painel de dados', label: 'Borda', param: 'pbd', opts: BORDERS },
+  { key: 'obj', el: objEl, attr: 'on', group: 'Objetivo', label: 'Exibir painel', param: 'oobj', opts: SHOW },
+  {
+    key: 'ostyle', el: objEl, attr: 'style', group: 'Objetivo', label: 'Estilo', param: 'ostyle',
+    opts: [['glass', 'Translúcido'], ['solid', 'Escuro sólido'], ['light', 'Claro'], ['neon', 'Neon'], ['minimal', 'Minimalista']]
+  },
+  { key: 'obd', el: objEl, attr: 'bd', group: 'Objetivo', label: 'Borda', param: 'obd', opts: BORDERS },
+  { key: 'fl', el: objEl, attr: 'fl', group: 'Objetivo', label: 'Fonte do rótulo', param: 'ofl', opts: SIZES, def: 'n' },
+  { key: 'ft', el: objEl, attr: 'ft', group: 'Objetivo', label: 'Fonte do título', param: 'oft', opts: SIZES, def: 'n' },
+  { key: 'fd', el: objEl, attr: 'fd', group: 'Objetivo', label: 'Fonte da descrição e dados', param: 'ofd', opts: SIZES, def: 'n' }
 ];
 layout.fx = layout.fx || {};
 layout.txt = layout.txt || {};
@@ -358,9 +376,9 @@ $('bar-foot').textContent = `${APP.name} · v${APP.version} · ${APP.year}`;
 /* ---------- janela de configurações: abas, estilos prontos e botões gerados de uma tabela (leve) ---------- */
 const TABS = ['Alerta', 'Painel de dados', 'Objetivo', 'Sons e conta'];
 const PRESETS = [
-  { name: 'Arcade',      set: { in: 'slide', shine: 'sweep', abd: 'default', pshow: 'on', theme: 'neon',   light: 'orbit', blink: 'soft', pbd: 'default', ostyle: 'glass',   obd: 'default' } },
-  { name: 'Clean',       set: { in: 'fade',  shine: 'none',  abd: 'round',   pshow: 'on', theme: 'escuro', light: 'none',  blink: 'soft', pbd: 'round',   ostyle: 'glass',   obd: 'round' } },
-  { name: 'Minimalista', set: { in: 'fade',  shine: 'none',  abd: 'none',    pshow: 'on', theme: 'escuro', light: 'none',  blink: 'none', pbd: 'none',    ostyle: 'minimal', obd: 'none' } }
+  { name: 'Arcade', set: { in: 'slide', shine: 'sweep', abd: 'default', pshow: 'on', theme: 'neon', light: 'orbit', blink: 'soft', pbd: 'default', ostyle: 'glass', obd: 'default' } },
+  { name: 'Clean', set: { in: 'fade', shine: 'none', abd: 'round', pshow: 'on', theme: 'escuro', light: 'none', blink: 'soft', pbd: 'round', ostyle: 'glass', obd: 'round' } },
+  { name: 'Minimalista', set: { in: 'fade', shine: 'none', abd: 'none', pshow: 'on', theme: 'escuro', light: 'none', blink: 'none', pbd: 'none', ostyle: 'minimal', obd: 'none' } }
 ];
 let stTab = TABS[0];
 
@@ -482,7 +500,7 @@ addEventListener('keydown', e => {
   if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
   const k = e.key.toLowerCase();
   if (k === 'e') toggleEdit();
-  if (k === 'r' && editing) { try { localStorage.removeItem('ra-overlay-layout'); } catch (err) {} location.reload(); }
+  if (k === 'r' && editing) { try { localStorage.removeItem('ra-overlay-layout'); } catch (err) { } location.reload(); }
 });
 
 /* ---------- upload dos sons pelo menu (modo edição) ---------- */
@@ -497,8 +515,10 @@ const idb = (() => {
     const t = db.transaction('sfx', mode), rq = fn(t.objectStore('sfx'));
     t.oncomplete = () => res(rq && rq.result); t.onerror = () => rej(t.error);
   }));
-  return { get: k => tx('readonly', st => st.get(k)), set: (k, v) => tx('readwrite', st => st.put(v, k)),
-           del: k => tx('readwrite', st => st.delete(k)) };
+  return {
+    get: k => tx('readonly', st => st.get(k)), set: (k, v) => tx('readwrite', st => st.put(v, k)),
+    del: k => tx('readwrite', st => st.delete(k))
+  };
 })();
 
 function setUpl(key, v) {
@@ -523,7 +543,7 @@ function clearUpl(key) { if (upl[key]) URL.revokeObjectURL(upl[key].url); upl[ke
     };
     pick.addEventListener('click', () => inp.click());
     test.addEventListener('click', () => chime(special, false));
-    del.addEventListener('click', () => { idb.del(key).catch(() => {}); clearUpl(key); refresh(); });
+    del.addEventListener('click', () => { idb.del(key).catch(() => { }); clearUpl(key); refresh(); });
     inp.addEventListener('change', async () => {
       const f = inp.files && inp.files[0]; inp.value = '';
       if (!f) return;
@@ -547,7 +567,7 @@ const SORTS = ['Ordem do jogo', 'Mais pontos', 'Mais raras'];
 const SAMPLE_OBJ = { Title: 'Nome da conquista', Description: 'Aqui aparece a descrição do objetivo atual.', Points: 10, BadgeName: '00000' };
 
 const objStore = () => { try { return JSON.parse(localStorage.getItem(OBJ_KEY) || '{}'); } catch (e) { return {}; } };
-const objSave = s => { try { localStorage.setItem(OBJ_KEY, JSON.stringify(s)); } catch (e) {} };
+const objSave = s => { try { localStorage.setItem(OBJ_KEY, JSON.stringify(s)); } catch (e) { } };
 const objQueue = () => (curGame && objStore()[String(curGame.ID)]) || [];
 const setObjQueue = ids => {
   const s = objStore(), k = String(curGame.ID);
@@ -613,7 +633,7 @@ function checkObjectives() {
 
 function updateObjInfo() {
   $('obj-info').textContent = curGame ? `${curGame.Title} · fila: ${objQueue().length}`
-                                      : 'Abra um jogo no emulador para listar as conquistas';
+    : 'Abra um jogo no emulador para listar as conquistas';
 }
 
 /* lista para escolher os objetivos */
@@ -628,8 +648,8 @@ function renderPicker() {
   const f = $('pk-search').value.trim().toLowerCase();
   if (f) items = items.filter(a => (a.Title + ' ' + a.Description).toLowerCase().includes(f));
   items.sort(pkSort === 1 ? (a, b) => b.Points - a.Points
-           : pkSort === 2 ? (a, b) => (a.NumAwarded == null ? 1e9 : a.NumAwarded) - (b.NumAwarded == null ? 1e9 : b.NumAwarded)
-           : (a, b) => (a.DisplayOrder || 0) - (b.DisplayOrder || 0));
+    : pkSort === 2 ? (a, b) => (a.NumAwarded == null ? 1e9 : a.NumAwarded) - (b.NumAwarded == null ? 1e9 : b.NumAwarded)
+      : (a, b) => (a.DisplayOrder || 0) - (b.DisplayOrder || 0));
   if (!items.length) return msg(f ? 'Nenhuma conquista encontrada.' : 'Nenhuma conquista pendente neste jogo.');
   items.forEach(a => {
     const id = String(a.ID), pos = ids.indexOf(id);
@@ -673,7 +693,7 @@ $('pk-clear').addEventListener('click', () => { if (curGame) { setObjQueue([]); 
     try {
       const p = await ra('API_GetUserProfile', { u: user });
       if (!p || !(p.User || p.ID)) throw new Error('usuário não encontrado');
-      try { localStorage.setItem('ra-overlay-cred', JSON.stringify({ user, key })); } catch (e) {}
+      try { localStorage.setItem('ra-overlay-cred', JSON.stringify({ user, key })); } catch (e) { }
       displayName = p.User || user;
       note('✓ Conectado como ' + displayName, true);
       seen.clear(); firstPoll = true; lastSig = null; lastGame = { id: null, hc: 0 }; pendingMastery = null;
@@ -706,5 +726,5 @@ document.documentElement.addEventListener('mouseleave', hideIntro);
 if (CFG.demo) demo();
 else {
   pollAchievements(); setInterval(pollAchievements, CFG.poll);
-  pollProgress();     setInterval(pollProgress, 60000);
+  pollProgress(); setInterval(pollProgress, 60000);
 }
