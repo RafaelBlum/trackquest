@@ -1,22 +1,34 @@
-# 🎮 Quest Alert
+<p align="center">
+  <img src="Assets/img/Logo-trackQuest.png" alt="TrackQuest Logo" width="280">
+</p>
 
-**Overlay de conquistas do RetroAchievements para OBS Studio.**
+<h1 align="center">🎮 TrackQuest</h1>
 
-Acompanhe suas conquistas, progresso e objetivos em tempo real durante suas lives e gravações — tudo dentro de uma fonte de navegador no OBS.
+<p align="center">
+  <b>Overlay de conquistas do RetroAchievements para OBS Studio.</b>
+</p>
 
-![Version](https://img.shields.io/badge/versão-1.0-blue)
-![Year](https://img.shields.io/badge/ano-2026-green)
+<p align="center">
+  <img src="https://img.shields.io/badge/versão-1.2-blue" alt="Version">
+  <img src="https://img.shields.io/badge/ano-2026-green" alt="Year">
+</p>
+
+Acompanhe suas conquistas, progresso, grade de badges e objetivos em tempo real durante suas lives e gravações — tudo dentro de uma fonte de navegador no OBS.
 
 ---
 
 ## ✨ Funcionalidades
 
 - **🏆 Alerta de conquista** — pop-up animado com badge, título, descrição, pontos e barra de tempo
-- **⭐ Banner de masterização** — alerta especial quando você masteriza um jogo (100% hardcore)
-- **📊 Painel de progresso** — card fixo com ícone do jogo, barra de progresso, contagem e Rich Presence
-- **🎯 Painel de objetivo** — mostra a conquista que você está tentando fazer, com fila de objetivos
-- **🎨 Modo edição** — arraste, redimensione e personalize tudo direto no overlay
+- **⭐ Banner de masterização** — alerta especial + chuva de badges quicando pela tela ao masterizar (100% hardcore)
+- **📊 Painel de progresso** — card fixo com ícone do jogo, barra de progresso, contagem, Rich Presence e tempo jogado
+- **🧩 Grade de badges** — painel visual com todas as conquistas; badges desbloqueadas ganham animação de cabeçada com personagem
+- **🎯 Painel de objetivo** — mostra a conquista que você está tentando fazer, com fila, avanço automático e faixa de texto rolante
+- **🌐 Tradução automática** — traduz os objetivos para Português, Espanhol, Francês, Alemão ou Italiano
+- **🎨 Menu com 6 abas** — Geral, Alerta, Painel de dados, Objetivo, Conquistas e Bolinhas
+- **✨ Efeitos de borda** — Neon, Pulsar e Luz circulando com 6 cores à escolha
 - **🔊 Sons customizáveis** — use seus próprios arquivos de som ou o beep retrô embutido
+- **🧲 Ímã inteligente** — painéis grudam nas bordas da tela e entre si ao arrastar (segure Alt para soltar)
 
 ---
 
@@ -41,7 +53,7 @@ Há duas formas de informar suas credenciais:
 **Opção A — Pelo modo edição (recomendado):**
 1. Clique com o botão direito na fonte → **Interagir**
 2. Pressione `E` para entrar no modo edição
-3. Clique em **Configurações** → aba **Sons e conta**
+3. Na aba **Geral** → seção **Conta RetroAchievements**
 4. Preencha seu usuário e API Key e clique em **Salvar e conectar**
 
 **Opção B — Pela URL:**
@@ -58,34 +70,51 @@ tracker-obs.html?user=SeuUsuario&key=SuaApiKey
 | `E` | Entrar / sair do modo edição |
 | `T` | Testar alerta de conquista |
 | `M` | Testar banner de masterização |
+| `G` | Testar desbloqueio na grade (cabeçada) |
+| `B` | Testar bolinhas de masterização |
 | `R` | Restaurar layout (reset) — só no modo edição |
 
 ---
 
 ## 🎨 Modo Edição
 
-Ao pressionar `E` na janela **Interagir** do OBS, você pode:
+Ao pressionar `E` na janela **Interagir** do OBS, o menu com 6 abas aparece no topo. Você pode:
 
-- **Arrastar** os painéis (alerta, progresso e objetivo) para qualquer posição
+- **Arrastar** os painéis (alerta, progresso, objetivo e grade) para qualquer posição — eles **grudam** nas bordas e entre si (segure `Alt` para soltar)
 - **Redimensionar** usando o canto branco ou a roda do mouse
 - **Ajustar a largura** arrastando a alça lateral
-- **Configurar efeitos** no painel de Configurações:
+- **Mover o menu** arrastando pela área de ajuda no topo
 
-### Estilos prontos
+### Abas do menu
+
+| Aba | O que configura |
+|-----|-----------------|
+| **Geral** | Presets prontos, sons e conta do RetroAchievements |
+| **Alerta** | Entrada (slide/zoom/cair/girar/surgir), brilho e borda |
+| **Painel de dados** | Exibir/ocultar, tempo jogado (H:MM / H:MM:SS), temas de cor, luz do ícone, piscada e efeitos de borda |
+| **Objetivo** | Estilo, faixa de texto (rolagem, fundo, cores), tradução, fontes em px, fila de objetivos e efeitos de borda |
+| **Conquistas** | Exibir/ocultar, tamanho/espaço dos badges, filtro (todas/bloqueadas/ganhas), ordem, fundo, borda, estilo dos badges, animação da cabeçada e personagem |
+| **Bolinhas** | Ligar/desligar, quantidade, tamanho, duração, velocidade, gravidade (nenhuma/leve/forte), borda e cor |
+
+### Estilos prontos (Presets)
 
 | Preset | Descrição |
 |--------|-----------|
 | **Arcade** | Slide + reflexo + neon (padrão) |
 | **Clean** | Fade suave + bordas arredondadas + tema escuro |
 | **Minimalista** | Sem bordas, sem brilho, fundo transparente |
+| **Neon** | Zoom + pulsar + bordas neon girando |
 
-### Efeitos do alerta
+### Efeitos de borda (Objetivo, Progresso e Grade)
 
-| Efeito | Opções |
-|--------|--------|
-| Entrada | Deslizar · Zoom · Cair · Girar · Surgir |
-| Brilho | Reflexo · Pulsar · Nenhum |
-| Borda | Padrão (chanfrada) · Sem borda · Cantos retos · Arredondada |
+| Efeito | Descrição |
+|--------|-----------|
+| **Nenhum** | Borda normal |
+| **Neon** | Brilho fixo colorido |
+| **Pulsar** | Brilho pulsante |
+| **Luz circulando** | Faixa de luz que gira ao redor do painel |
+
+> Cores disponíveis: Ciano · Rosa · Verde · Dourado · Vermelho · Branco
 
 ### Temas do painel de progresso
 
@@ -97,25 +126,52 @@ Ao pressionar `E` na janela **Interagir** do OBS, você pode:
 | **Rosa** | Rosa e magenta |
 | **Escuro** | Cinza escuro com dourado |
 
-### Painel de objetivo
-
-- **Estilos:** Translúcido · Escuro sólido · Claro · Neon · Minimalista
-- **Tamanhos de fonte** configuráveis para rótulo, título e descrição
-- **Textos editáveis** para o rótulo e a mensagem de conclusão
-
 ---
 
 ## 🎯 Sistema de Objetivos
 
-O painel de objetivo permite escolher conquistas para acompanhar durante o jogo:
+O painel de objetivo mostra a conquista que você está tentando conseguir:
 
-1. No modo edição, clique em **Escolher objetivo**
+1. No modo edição, aba **Objetivo** → **Escolher objetivo**
 2. Clique nas conquistas pendentes para adicionar à fila (a ordem dos cliques define a prioridade)
 3. Clique novamente para remover da fila
 4. A primeira conquista não obtida da fila aparece no painel
 5. Ao conquistar, o painel mostra **"✓ Concluída!"** e avança para a próxima
 
+### Recursos do painel de objetivo
+
+- **Faixa de texto rolante** — o rótulo rola quando o texto não cabe (configurável: automática, sempre ou desligada)
+- **Fundo personalizado** — Translúcido, Escuro, Fogo, Azul, Verde, Roxo ou cores personalizadas (#hex)
+- **Tradução automática** — traduz título e descrição para 6 idiomas usando MyMemory (resultado é cacheado)
+- **Fontes ajustáveis em px** — rótulo, título, descrição e dados podem ser ajustados individualmente
+- **Estilos do painel** — Translúcido · Escuro sólido · Claro · Neon · Minimalista
+
 A fila é salva por jogo no `localStorage` e persiste entre sessões.
+
+---
+
+## 🧩 Grade de Badges
+
+Painel visual com todas as conquistas do jogo atual:
+
+- **Badges bloqueadas** — efeito blur, cinza, escurecidas ou sem efeito
+- **Desbloqueio animado** — um personagem corre, dá uma cabeçada e a badge sobe (pode desligar)
+- **Personagem customizável** — troque o arquivo `Assets/img/runner.png` por qualquer pixel art
+- **Filtros** — mostrar todas, só bloqueadas ou só desbloqueadas
+- **Ordenação** — ordem do jogo, mais pontos ou mais raras
+- **Borda dos badges** — cor (7 opções), espessura (fina/normal/grossa/neon/sem borda) e cantos (suaves/retos/arredondados)
+- **Tamanho, espaço e altura máxima** ajustáveis em px
+
+---
+
+## 🫧 Bolinhas de Masterização
+
+Ao masterizar um jogo, as badges das conquistas saem em bolinhas que quicam pela tela com física real:
+
+- **Colisão elástica** entre bolinhas
+- **Gravidade** — nenhuma, leve ou forte
+- **Configuráveis** — quantidade (4–150), tamanho (24–160 px), duração (3–60 s), velocidade (100–1200 px/s)
+- **Borda** — fina, grossa, neon ou sem borda, com 6 cores
 
 ---
 
@@ -136,7 +192,7 @@ Se nenhum arquivo for encontrado, um **beep retrô** é gerado automaticamente.
 
 ### Sons enviados pelo menu
 
-No modo edição → **Configurações** → aba **Sons e conta**, você pode enviar seus próprios arquivos de som. Eles ficam salvos no IndexedDB do navegador e têm prioridade sobre os da pasta.
+No modo edição → aba **Geral** → seção **Sons**, você pode enviar seus próprios arquivos de som. Eles ficam salvos no IndexedDB do navegador e têm prioridade sobre os da pasta.
 
 ---
 
@@ -152,6 +208,7 @@ Todos os parâmetros são opcionais. Valores informados na URL têm prioridade s
 | `time` | `7` | Duração do alerta na tela (segundos) |
 | `pos` | `bl` | Posição do alerta: `tl` · `tr` · `bl` · `br` |
 | `ppos` | `tl` | Posição do painel de progresso |
+| `gpos` | `br` | Posição do painel de conquistas (grade) |
 | `opos` | `tr` | Posição do painel de objetivo |
 | `progress` | `1` | `0` para esconder o card de progresso |
 | `sound` | `1` | `0` para silenciar |
@@ -165,7 +222,7 @@ Todos os parâmetros são opcionais. Valores informados na URL têm prioridade s
 
 **Exemplo completo:**
 ```
-tracker-obs.html?user=MeuUsuario&key=MinhaApiKey&pos=bl&ppos=tl&opos=tr&scale=1.1&hc=1
+tracker-obs.html?user=MeuUsuario&key=MinhaApiKey&pos=bl&ppos=tl&gpos=br&opos=tr&scale=1.1&hc=1
 ```
 
 ---
@@ -174,14 +231,16 @@ tracker-obs.html?user=MeuUsuario&key=MinhaApiKey&pos=bl&ppos=tl&opos=tr&scale=1.
 
 ```
 Track-Quest/
+├── index.html              → Landing page (GitHub Pages)
 ├── tracker-obs.html        → Página do overlay (fonte de navegador do OBS)
 ├── css/
 │   └── style.css           → Estilos e animações
 ├── js/
-│   └── app.js              → Lógica: API, alertas, edição, objetivos e sons
+│   └── app.js              → Lógica: API, alertas, edição, objetivos, grade, bolinhas e sons
 ├── Assets/
 │   ├── img/
-│   │   └── Logo-trackQuest.png
+│   │   ├── Logo-trackQuest.png
+│   │   └── runner.png      → Personagem da animação de cabeçada (pixel art)
 │   └── sound/              → Sons de conquista e masterização (.ogg/.mp3/.wav)
 └── README.md
 ```
@@ -196,17 +255,21 @@ O overlay consome a [API pública do RetroAchievements](https://api-docs.retroac
 |----------|-----|
 | `API_GetUserRecentAchievements` | Conquistas recentes (polling) |
 | `API_GetUserProfile` | Perfil e jogo atual |
-| `API_GetGameInfoAndUserProgress` | Progresso detalhado e lista de conquistas |
+| `API_GetGameInfoAndUserProgress` | Progresso detalhado, lista de conquistas e tempo jogado |
+
+Para tradução dos objetivos, usa a [API gratuita MyMemory](https://mymemory.translated.net/doc/spec.php) (resultados cacheados no `localStorage`).
 
 ---
 
 ## 📝 Notas
 
 - O overlay foi feito para rodar como **fonte de navegador** no OBS. Funciona também em qualquer navegador moderno para testes.
-- As posições, escalas, efeitos e credenciais são salvos no `localStorage` do navegador.
+- As posições, escalas, efeitos, fontes e credenciais são salvos no `localStorage` do navegador.
 - Sons enviados pelo menu são armazenados no `IndexedDB`.
+- Traduções dos objetivos são cacheadas no `localStorage` para não repetir chamadas.
 - Na primeira execução, conquistas já obtidas não disparam alertas (evita flood).
 - A masterização é detectada automaticamente quando o progresso hardcore chega a 100%.
+- O personagem da cabeçada (`Assets/img/runner.png`) pode ser substituído por qualquer pixel art — de preferência virada para a direita, com ~44 px de largura.
 
 ---
 
@@ -217,5 +280,5 @@ Projeto pessoal de [Blumzeira](https://retroachievements.org/user/blumzeira).
 ---
 
 <p align="center">
-  <b>Quest Alert</b> · v1.0 · 2026
+  <b>TrackQuest</b> · v1.2 · 2026
 </p>

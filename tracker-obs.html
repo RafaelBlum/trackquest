@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>RetroAchievements Overlay</title>
+<title>TrackQuest</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -29,20 +29,28 @@
 </div>
 
 <div id="objective">
-  <img id="o-badge" alt="">
-  <div class="o-body">
-    <div class="o-label"><span id="o-lab">Objetivo atual</span><span id="o-queue"></span></div>
-    <div id="o-title"></div>
-    <div id="o-desc"></div>
-    <div class="o-meta"><span id="o-pts"></span><span id="o-rar"></span></div>
+  <div class="o-strip"><div class="o-track" id="o-track"><span id="o-lab">Objetivo atual</span></div></div>
+  <div class="o-top">
+    <img id="o-badge" alt="">
+    <div class="o-body">
+      <div id="o-title"></div>
+      <div id="o-desc"></div>
+      <div class="o-meta"><span id="o-pts"></span><span id="o-rar"></span><span id="o-queue"></span></div>
+    </div>
   </div>
   <div id="o-done">✓ Concluída!</div>
+</div>
+
+<div id="grid">
+  <div class="g-head"><span id="g-title"></span><span id="g-count"></span></div>
+  <div id="g-cells"></div>
+  <img id="runner" alt="">
 </div>
 
 <div id="progress">
   <div class="icon"><img id="gicon" alt=""></div>
   <div class="pb">
-    <div id="gtitle"></div>
+    <div class="ptop"><div id="gtitle"></div><div id="gtime"></div></div>
     <div id="gstate"></div>
     <div class="bar"><i id="bsoft"></i><i id="bhard"></i></div>
     <div class="meta"><span id="pcount"><b id="pnum"></b><span id="ptot"></span></span><span id="ppct"></span></div>
@@ -73,35 +81,29 @@
   <div class="pk-foot">Clique para adicionar à fila (vale a ordem dos cliques) e clique de novo para remover. A primeira da fila aparece no painel.</div>
 </div>
 
-<div id="settings">
-  <div class="st-head"><span>Configurações</span><button type="button" class="chip" id="st-close">Fechar</button></div>
-  <div class="st-presets" id="st-presets"></div>
-  <div class="st-tabs" id="st-tabs"></div>
-  <div id="st-body"></div>
-  <div id="st-conta">
-    <div class="b-snd" id="bar-snd"></div>
-  <div class="b-cred">
+<div id="bubbles"></div>
+
+<div id="holder">
+  <div class="b-snd" id="bar-snd"></div>
+  <div class="b-cred" id="cred-row">
     <label>Usuário <input id="in-user" type="text" autocomplete="off" spellcheck="false"></label>
     <label>API Key <input id="in-key" type="password" autocomplete="off" spellcheck="false"></label>
     <button type="button" class="chip" id="cred-save">Salvar e conectar</button>
     <span id="cred-msg"></span>
   </div>
-  </div>
 </div>
 
 <div id="bar">
-  <div class="b-help">
-    <span><b>Mover</b> arraste o painel</span>
+  <div class="b-help" id="b-drag">
+    <span><b>Mover</b> arraste o painel (ele gruda nos outros; segure Alt para soltar)</span>
     <span><b>Tamanho</b> canto branco ou roda do mouse</span>
-    <span><b>Configurações</b> efeitos, cores, bordas e sons</span>
+    <span><b>Largura</b> alça da lateral</span>
+    <span><b>Menu</b> arraste por esta área e escolha uma aba abaixo</span>
     <span><b>E</b> sair</span>
     <span><b>R</b> restaurar tudo</span>
   </div>
-  <div class="b-fx">
-    <button type="button" class="chip" id="st-open">Configurações</button>
-    <button type="button" class="chip" id="obj-open">Escolher objetivo</button>
-    <span class="snd-name" id="obj-info"></span>
-  </div>
+  <div class="b-tabs" id="b-tabs"></div>
+  <div id="b-panel"></div>
   <div class="b-foot" id="bar-foot"></div>
 </div>
 

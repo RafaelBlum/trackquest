@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quest Alert — Overlay de conquistas do RetroAchievements para OBS</title>
-  <meta name="description" content="Overlay gratuito de conquistas do RetroAchievements para OBS Studio. Alertas animados, progresso do jogo e objetivos em tempo real nas suas lives.">
+  <title>TrackQuest — Overlay de conquistas do RetroAchievements para OBS</title>
+  <meta name="description" content="Overlay gratuito de conquistas do RetroAchievements para OBS Studio. Alertas animados, progresso do jogo, grade de badges, objetivos traduzíveis e bolinhas de masterização em tempo real nas suas lives.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -35,16 +35,14 @@
   <!-- Hero -->
   <header class="max-w-2xl w-full text-center mt-10 mb-12">
     <div class="float inline-block mb-6">
-      <div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-brand-gold via-yellow-500 to-amber-600 flex items-center justify-center text-5xl shadow-lg glow-gold select-none">
-        🏆
-      </div>
+      <img src="Assets/img/Logo-trackQuest.png" alt="TrackQuest Logo" class="max-w-[220px] sm:max-w-[260px] h-auto mx-auto drop-shadow-[0_10px_25px_rgba(245,197,66,0.3)] select-none">
     </div>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-      Quest <span class="text-brand-gold">Alert</span>
+      Track<span class="text-brand-gold">Quest</span>
     </h1>
     <p class="text-slate-400 text-lg mt-4 leading-relaxed max-w-lg mx-auto">
       Overlay de conquistas do <strong class="text-brand-cyan">RetroAchievements</strong> para OBS Studio.<br>
-      Alertas animados, progresso e objetivos em tempo real nas suas lives.
+      Alertas animados, progresso, grade de badges e objetivos em tempo real nas suas lives.
     </p>
 
     <!-- CTA -->
@@ -68,7 +66,7 @@
       <!-- ⬇️ TROQUE o ID_DO_VIDEO pelo ID do vídeo do YouTube (ex: dQw4w9WgXcQ) -->
       <iframe class="absolute inset-0 w-full h-full"
         src="https://www.youtube.com/embed/ID_DO_VIDEO"
-        title="Tutorial — Quest Alert"
+        title="Tutorial — TrackQuest"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
@@ -89,29 +87,36 @@
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-brand-pink/15 text-brand-pink">⭐</div>
       <div>
-        <h3 class="font-bold text-white text-lg">Masterização</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Banner especial quando você completa 100% das conquistas hardcore de um jogo.</p>
+        <h3 class="font-bold text-white text-lg">Masterização + bolinhas</h3>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Banner especial e chuva de badges quicando pela tela ao completar 100% hardcore. Gravidade e física configuráveis.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-brand-cyan/15 text-brand-cyan">📊</div>
       <div>
         <h3 class="font-bold text-white text-lg">Painel de progresso</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Card fixo com ícone, barra de progresso, contagem de conquistas e Rich Presence do emulador.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Card fixo com ícone, barra de progresso, contagem de conquistas, Rich Presence e tempo jogado.</p>
+      </div>
+    </div>
+    <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
+      <div class="feat-icon bg-indigo-500/15 text-indigo-400">🧩</div>
+      <div>
+        <h3 class="font-bold text-white text-lg">Grade de badges</h3>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Painel visual com todas as conquistas do jogo. Badges desbloqueadas ganham animação de cabeçada com personagem.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-green-500/15 text-green-400">🎯</div>
       <div>
-        <h3 class="font-bold text-white text-lg">Objetivos</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Escolha conquistas para acompanhar. Fila com prioridade, avanço automático e efeito de conclusão.</p>
+        <h3 class="font-bold text-white text-lg">Objetivos traduzíveis</h3>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Escolha conquistas para acompanhar com fila e avanço automático. Tradução em 6 idiomas com faixa de texto rolante.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-purple-500/15 text-purple-400">🎨</div>
       <div>
         <h3 class="font-bold text-white text-lg">Totalmente personalizável</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Arraste, redimensione, troque temas (Neon, Fogo, Verde, Rosa, Escuro) e aplique presets prontos.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Menu com 6 abas, 4 presets, efeitos de borda (neon, pulsar, luz circulando), temas de cor e ímã para alinhar painéis.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
@@ -119,6 +124,13 @@
       <div>
         <h3 class="font-bold text-white text-lg">Sons customizáveis</h3>
         <p class="text-slate-400 text-sm mt-1 leading-relaxed">Envie seus próprios sons pelo menu ou use o beep retrô embutido. Suporta OGG, MP3 e WAV.</p>
+      </div>
+    </div>
+    <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
+      <div class="feat-icon bg-red-500/15 text-red-400">⏱️</div>
+      <div>
+        <h3 class="font-bold text-white text-lg">Tempo jogado</h3>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Exibe o tempo de jogo gravado pelo RetroAchievements no painel de progresso. Formato H:MM ou H:MM:SS.</p>
       </div>
     </div>
   </section>
@@ -137,7 +149,7 @@
       </div>
       <div class="flex gap-4 items-start">
         <span class="font-retro text-brand-gold text-xs mt-1 flex-none w-8 text-right">3.</span>
-        <p class="text-slate-300 leading-relaxed">Pressione <kbd class="bg-brand-gold text-brand-bg font-bold px-2 py-0.5 rounded text-sm">E</kbd> na janela <em>Interagir</em> para editar posições, efeitos e informar suas credenciais.</p>
+        <p class="text-slate-300 leading-relaxed">Pressione <kbd class="bg-brand-gold text-brand-bg font-bold px-2 py-0.5 rounded text-sm">E</kbd> na janela <em>Interagir</em> para abrir o menu com 6 abas e configurar posições, efeitos e credenciais.</p>
       </div>
       <div class="flex gap-4 items-start">
         <span class="font-retro text-brand-gold text-xs mt-1 flex-none w-8 text-right">4.</span>
@@ -146,15 +158,27 @@
     </div>
   </section>
 
-  <!-- Temas -->
+  <!-- Presets e Temas -->
   <section class="max-w-2xl w-full mb-12 text-center">
-    <h2 class="text-2xl font-bold text-white mb-6">Temas de cores</h2>
-    <div class="flex flex-wrap justify-center gap-3">
-      <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow">Neon</span>
-      <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-orange-500 to-red-600 text-white shadow">Fogo</span>
-      <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow">Verde</span>
-      <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white shadow">Rosa</span>
-      <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-slate-600 to-slate-800 text-yellow-300 shadow border border-slate-600">Escuro</span>
+    <h2 class="text-2xl font-bold text-white mb-6">Presets e temas</h2>
+    <div class="mb-5">
+      <p class="text-slate-500 text-sm mb-3 font-bold uppercase tracking-wider">Estilos prontos</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-brand-accent text-brand-cyan border border-brand-cyan/40 shadow">Arcade</span>
+        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-slate-800 text-slate-300 border border-slate-600 shadow">Clean</span>
+        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-slate-900 text-slate-400 border border-slate-700 shadow">Minimalista</span>
+        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-brand-accent text-brand-pink border border-brand-pink/40 shadow">Neon</span>
+      </div>
+    </div>
+    <div>
+      <p class="text-slate-500 text-sm mb-3 font-bold uppercase tracking-wider">Temas de cores</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow">Neon</span>
+        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-orange-500 to-red-600 text-white shadow">Fogo</span>
+        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow">Verde</span>
+        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white shadow">Rosa</span>
+        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-slate-600 to-slate-800 text-yellow-300 shadow border border-slate-600">Escuro</span>
+      </div>
     </div>
   </section>
 
@@ -164,7 +188,7 @@
       Feito por <a href="https://retroachievements.org/user/blumzeira" target="_blank" class="text-brand-gold hover:underline font-bold">Blumzeira</a>
       · <a href="https://github.com/blumzeira/Track-Quest" target="_blank" class="text-brand-cyan hover:underline">GitHub</a>
     </p>
-    <p class="text-slate-600 text-xs mt-2 font-retro tracking-wider">Quest Alert · v1.0 · 2026</p>
+    <p class="text-slate-600 text-xs mt-2 font-retro tracking-wider">TrackQuest · v1.2 · 2026</p>
   </footer>
 
 </body>
