@@ -3,8 +3,8 @@
 const q = new URLSearchParams(location.search);
 const saved = (() => { try { return JSON.parse(localStorage.getItem('ra-overlay-cred') || '{}'); } catch (e) { return {}; } })();
 const CFG = {
-  user:     q.get('user')  || saved.user || 'blumzeira',
-  key:      q.get('key')   || saved.key  || 'VPiHkcacXfHr0Z8y47soDcoytSy5WMn9',
+  user:     q.get('user')  || saved.user || 'User',
+  key:      q.get('key')   || saved.key  || 'API key sua',
   poll:    (+q.get('poll') || 8)  * 1000,   // checa conquistas a cada N s
   time:    (+q.get('time') || 7)  * 1000,   // tempo do alerta na tela
   pos:      q.get('pos')   || 'bl',          // alerta: tl | tr | bl | br
