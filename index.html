@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TrackQuest — Overlay de conquistas do RetroAchievements para OBS</title>
-  <meta name="description" content="Overlay gratuito de conquistas do RetroAchievements para OBS Studio. Alertas animados, progresso do jogo, grade de badges, objetivos traduzíveis e bolinhas de masterização em tempo real nas suas lives.">
+  <meta name="description"
+    content="Overlay gratuito de conquistas do RetroAchievements para OBS Studio. Alertas animados, progresso do jogo, grade de badges, objetivos traduzíveis e bolinhas de masterização em tempo real nas suas lives.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Press+Start+2P&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,27 +22,72 @@
     };
   </script>
   <style>
-    body { font-family: 'Chakra Petch', system-ui, sans-serif; }
-    .glow-gold { box-shadow: 0 0 30px rgba(245,197,66,.2), 0 8px 32px rgba(0,0,0,.5); }
-    .glow-cyan { box-shadow: 0 0 24px rgba(125,249,255,.15), 0 6px 24px rgba(0,0,0,.4); }
-    .feat-icon { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
-      border-radius: 14px; font-size: 26px; flex: none; }
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-    .float { animation: float 3s ease-in-out infinite; }
-    @keyframes pulse-border { 0%,100% { border-color: rgba(125,249,255,.3); } 50% { border-color: rgba(125,249,255,.7); } }
-    .pulse-border { animation: pulse-border 2.5s ease-in-out infinite; }
+    body {
+      font-family: 'Chakra Petch', system-ui, sans-serif;
+    }
+
+    .glow-gold {
+      box-shadow: 0 0 30px rgba(245, 197, 66, .2), 0 8px 32px rgba(0, 0, 0, .5);
+    }
+
+    .glow-cyan {
+      box-shadow: 0 0 24px rgba(125, 249, 255, .15), 0 6px 24px rgba(0, 0, 0, .4);
+    }
+
+    .feat-icon {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      font-size: 26px;
+      flex: none;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-border {
+
+      0%,
+      100% {
+        border-color: rgba(125, 249, 255, .3);
+      }
+
+      50% {
+        border-color: rgba(125, 249, 255, .7);
+      }
+    }
+
+    .pulse-border {
+      animation: pulse-border 2.5s ease-in-out infinite;
+    }
   </style>
 </head>
+
 <body class="bg-brand-bg text-slate-100 min-h-screen flex flex-col items-center p-6">
 
   <!-- Hero -->
   <header class="max-w-2xl w-full text-center mt-10 mb-12">
     <div class="float inline-block mb-6">
-      <img src="Assets/img/Logo-trackQuest.png" alt="TrackQuest Logo" class="max-w-[220px] sm:max-w-[260px] h-auto mx-auto drop-shadow-[0_10px_25px_rgba(245,197,66,0.3)] select-none">
+      <img src="Assets/img/Logo-trackQuest.png" alt="TrackQuest Logo"
+        class="max-w-[286px] sm:max-w-[338px] h-auto mx-auto drop-shadow-[0_10px_25px_rgba(245,197,66,0.3)] select-none">
     </div>
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-      Track<span class="text-brand-gold">Quest</span>
-    </h1>
+
     <p class="text-slate-400 text-lg mt-4 leading-relaxed max-w-lg mx-auto">
       Overlay de conquistas do <strong class="text-brand-cyan">RetroAchievements</strong> para OBS Studio.<br>
       Alertas animados, progresso, grade de badges e objetivos em tempo real nas suas lives.
@@ -48,12 +96,15 @@
     <!-- CTA -->
     <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
       <a href="https://github.com/blumzeira/Track-Quest" target="_blank"
-         class="inline-flex items-center justify-center gap-2 py-3 px-7 bg-brand-gold hover:bg-yellow-400 text-brand-bg font-bold rounded-xl transition-colors text-lg shadow-lg">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.37.5 0 5.78 0 12.292c0 5.211 3.438 9.63 8.205 11.188.6.111.82-.254.82-.567 0-.28-.01-1.022-.015-2.005-3.338.711-4.042-1.582-4.042-1.582-.546-1.361-1.333-1.724-1.333-1.724-1.089-.73.083-.716.083-.716 1.205.083 1.838 1.215 1.838 1.215 1.07 1.802 2.807 1.281 3.492.98.109-.763.419-1.282.762-1.577-2.665-.295-5.466-1.309-5.466-5.827 0-1.287.465-2.339 1.228-3.164-.123-.298-.533-1.497.117-3.12 0 0 1.001-.314 3.28 1.209A11.5 11.5 0 0 1 12 6.844c1.016.005 2.038.134 2.993.394 2.278-1.523 3.277-1.209 3.277-1.209.652 1.623.241 2.822.118 3.12.765.825 1.226 1.877 1.226 3.164 0 4.53-2.805 5.528-5.475 5.818.43.364.814 1.084.814 2.184 0 1.577-.014 2.846-.014 3.233 0 .316.216.683.825.567C20.565 21.917 24 17.5 24 12.292 24 5.78 18.627.5 12 .5z"/></svg>
+        class="inline-flex items-center justify-center gap-2 py-3 px-7 bg-brand-gold hover:bg-yellow-400 text-brand-bg font-bold rounded-xl transition-colors text-lg shadow-lg">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M12 .5C5.37.5 0 5.78 0 12.292c0 5.211 3.438 9.63 8.205 11.188.6.111.82-.254.82-.567 0-.28-.01-1.022-.015-2.005-3.338.711-4.042-1.582-4.042-1.582-.546-1.361-1.333-1.724-1.333-1.724-1.089-.73.083-.716.083-.716 1.205.083 1.838 1.215 1.838 1.215 1.07 1.802 2.807 1.281 3.492.98.109-.763.419-1.282.762-1.577-2.665-.295-5.466-1.309-5.466-5.827 0-1.287.465-2.339 1.228-3.164-.123-.298-.533-1.497.117-3.12 0 0 1.001-.314 3.28 1.209A11.5 11.5 0 0 1 12 6.844c1.016.005 2.038.134 2.993.394 2.278-1.523 3.277-1.209 3.277-1.209.652 1.623.241 2.822.118 3.12.765.825 1.226 1.877 1.226 3.164 0 4.53-2.805 5.528-5.475 5.818.43.364.814 1.084.814 2.184 0 1.577-.014 2.846-.014 3.233 0 .316.216.683.825.567C20.565 21.917 24 17.5 24 12.292 24 5.78 18.627.5 12 .5z" />
+        </svg>
         Ver no GitHub
       </a>
       <a href="tracker-obs.html?demo=1" target="_blank"
-         class="inline-flex items-center justify-center gap-2 py-3 px-7 bg-brand-accent hover:bg-slate-700 text-slate-200 font-bold rounded-xl transition-colors text-lg border border-slate-700">
+        class="inline-flex items-center justify-center gap-2 py-3 px-7 bg-brand-accent hover:bg-slate-700 text-slate-200 font-bold rounded-xl transition-colors text-lg border border-slate-700">
         ▶ Demo ao vivo
       </a>
     </div>
@@ -62,12 +113,11 @@
   <!-- Vídeo tutorial -->
   <section class="max-w-2xl w-full mb-12">
     <h2 class="text-2xl font-bold text-white text-center mb-6">📺 Tutorial</h2>
-    <div class="relative w-full rounded-2xl overflow-hidden border border-slate-800 glow-cyan" style="padding-top:56.25%">
+    <div class="relative w-full rounded-2xl overflow-hidden border border-slate-800 glow-cyan"
+      style="padding-top:56.25%">
       <!-- ⬇️ TROQUE o ID_DO_VIDEO pelo ID do vídeo do YouTube (ex: dQw4w9WgXcQ) -->
-      <iframe class="absolute inset-0 w-full h-full"
-        src="https://www.youtube.com/embed/ID_DO_VIDEO"
-        title="Tutorial — TrackQuest"
-        frameborder="0"
+      <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/ID_DO_VIDEO"
+        title="Tutorial — TrackQuest" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
@@ -81,56 +131,64 @@
       <div class="feat-icon bg-brand-gold/15 text-brand-gold">🏆</div>
       <div>
         <h3 class="font-bold text-white text-lg">Alertas de conquista</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Pop-up animado com badge, título, pontos e timer. 5 efeitos de entrada e 3 tipos de brilho.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Pop-up animado com badge, título, pontos e timer. 5
+          efeitos de entrada e 3 tipos de brilho.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-brand-pink/15 text-brand-pink">⭐</div>
       <div>
         <h3 class="font-bold text-white text-lg">Masterização + bolinhas</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Banner especial e chuva de badges quicando pela tela ao completar 100% hardcore. Gravidade e física configuráveis.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Banner especial e chuva de badges quicando pela tela ao
+          completar 100% hardcore. Gravidade e física configuráveis.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-brand-cyan/15 text-brand-cyan">📊</div>
       <div>
         <h3 class="font-bold text-white text-lg">Painel de progresso</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Card fixo com ícone, barra de progresso, contagem de conquistas, Rich Presence e tempo jogado.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Card fixo com ícone, barra de progresso, contagem de
+          conquistas, Rich Presence e tempo jogado.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-indigo-500/15 text-indigo-400">🧩</div>
       <div>
         <h3 class="font-bold text-white text-lg">Grade de badges</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Painel visual com todas as conquistas do jogo. Badges desbloqueadas ganham animação de cabeçada com personagem.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Painel visual com todas as conquistas do jogo. Badges
+          desbloqueadas ganham animação de cabeçada com personagem.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-green-500/15 text-green-400">🎯</div>
       <div>
         <h3 class="font-bold text-white text-lg">Objetivos traduzíveis</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Escolha conquistas para acompanhar com fila e avanço automático. Tradução em 6 idiomas com faixa de texto rolante.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Escolha conquistas para acompanhar com fila e avanço
+          automático. Tradução em 6 idiomas com faixa de texto rolante.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-purple-500/15 text-purple-400">🎨</div>
       <div>
         <h3 class="font-bold text-white text-lg">Totalmente personalizável</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Menu com 6 abas, 4 presets, efeitos de borda (neon, pulsar, luz circulando), temas de cor e ímã para alinhar painéis.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Menu com 6 abas, 4 presets, efeitos de borda (neon,
+          pulsar, luz circulando), temas de cor e ímã para alinhar painéis.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-orange-500/15 text-orange-400">🔊</div>
       <div>
         <h3 class="font-bold text-white text-lg">Sons customizáveis</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Envie seus próprios sons pelo menu ou use o beep retrô embutido. Suporta OGG, MP3 e WAV.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Envie seus próprios sons pelo menu ou use o beep retrô
+          embutido. Suporta OGG, MP3 e WAV.</p>
       </div>
     </div>
     <div class="bg-brand-card/70 border border-slate-800 rounded-2xl p-6 flex gap-4 items-start">
       <div class="feat-icon bg-red-500/15 text-red-400">⏱️</div>
       <div>
         <h3 class="font-bold text-white text-lg">Tempo jogado</h3>
-        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Exibe o tempo de jogo gravado pelo RetroAchievements no painel de progresso. Formato H:MM ou H:MM:SS.</p>
+        <p class="text-slate-400 text-sm mt-1 leading-relaxed">Exibe o tempo de jogo gravado pelo RetroAchievements no
+          painel de progresso. Formato H:MM ou H:MM:SS.</p>
       </div>
     </div>
   </section>
@@ -141,15 +199,21 @@
     <div class="bg-brand-card/50 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5">
       <div class="flex gap-4 items-start">
         <span class="font-retro text-brand-gold text-xs mt-1 flex-none w-8 text-right">1.</span>
-        <p class="text-slate-300 leading-relaxed">Pegue sua <strong class="text-white">Web API Key</strong> em <a href="https://retroachievements.org" target="_blank" class="text-brand-cyan hover:underline">retroachievements.org</a> → Settings → Keys.</p>
+        <p class="text-slate-300 leading-relaxed">Pegue sua <strong class="text-white">Web API Key</strong> em <a
+            href="https://retroachievements.org" target="_blank"
+            class="text-brand-cyan hover:underline">retroachievements.org</a> → Settings → Keys.</p>
       </div>
       <div class="flex gap-4 items-start">
         <span class="font-retro text-brand-gold text-xs mt-1 flex-none w-8 text-right">2.</span>
-        <p class="text-slate-300 leading-relaxed">No OBS, adicione uma fonte <strong class="text-white">Navegador</strong> apontando para <code class="text-brand-cyan bg-brand-accent/60 px-2 py-0.5 rounded text-sm">tracker-obs.html</code>.</p>
+        <p class="text-slate-300 leading-relaxed">No OBS, adicione uma fonte <strong
+            class="text-white">Navegador</strong> apontando para <code
+            class="text-brand-cyan bg-brand-accent/60 px-2 py-0.5 rounded text-sm">tracker-obs.html</code>.</p>
       </div>
       <div class="flex gap-4 items-start">
         <span class="font-retro text-brand-gold text-xs mt-1 flex-none w-8 text-right">3.</span>
-        <p class="text-slate-300 leading-relaxed">Pressione <kbd class="bg-brand-gold text-brand-bg font-bold px-2 py-0.5 rounded text-sm">E</kbd> na janela <em>Interagir</em> para abrir o menu com 6 abas e configurar posições, efeitos e credenciais.</p>
+        <p class="text-slate-300 leading-relaxed">Pressione <kbd
+            class="bg-brand-gold text-brand-bg font-bold px-2 py-0.5 rounded text-sm">E</kbd> na janela
+          <em>Interagir</em> para abrir o menu com 6 abas e configurar posições, efeitos e credenciais.</p>
       </div>
       <div class="flex gap-4 items-start">
         <span class="font-retro text-brand-gold text-xs mt-1 flex-none w-8 text-right">4.</span>
@@ -164,20 +228,29 @@
     <div class="mb-5">
       <p class="text-slate-500 text-sm mb-3 font-bold uppercase tracking-wider">Estilos prontos</p>
       <div class="flex flex-wrap justify-center gap-3">
-        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-brand-accent text-brand-cyan border border-brand-cyan/40 shadow">Arcade</span>
-        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-slate-800 text-slate-300 border border-slate-600 shadow">Clean</span>
-        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-slate-900 text-slate-400 border border-slate-700 shadow">Minimalista</span>
-        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-brand-accent text-brand-pink border border-brand-pink/40 shadow">Neon</span>
+        <span
+          class="px-5 py-2.5 rounded-full font-bold text-sm bg-brand-accent text-brand-cyan border border-brand-cyan/40 shadow">Arcade</span>
+        <span
+          class="px-5 py-2.5 rounded-full font-bold text-sm bg-slate-800 text-slate-300 border border-slate-600 shadow">Clean</span>
+        <span
+          class="px-5 py-2.5 rounded-full font-bold text-sm bg-slate-900 text-slate-400 border border-slate-700 shadow">Minimalista</span>
+        <span
+          class="px-5 py-2.5 rounded-full font-bold text-sm bg-brand-accent text-brand-pink border border-brand-pink/40 shadow">Neon</span>
       </div>
     </div>
     <div>
       <p class="text-slate-500 text-sm mb-3 font-bold uppercase tracking-wider">Temas de cores</p>
       <div class="flex flex-wrap justify-center gap-3">
-        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow">Neon</span>
-        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-orange-500 to-red-600 text-white shadow">Fogo</span>
-        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow">Verde</span>
-        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white shadow">Rosa</span>
-        <span class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-slate-600 to-slate-800 text-yellow-300 shadow border border-slate-600">Escuro</span>
+        <span
+          class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow">Neon</span>
+        <span
+          class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-orange-500 to-red-600 text-white shadow">Fogo</span>
+        <span
+          class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow">Verde</span>
+        <span
+          class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white shadow">Rosa</span>
+        <span
+          class="px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-slate-600 to-slate-800 text-yellow-300 shadow border border-slate-600">Escuro</span>
       </div>
     </div>
   </section>
@@ -185,11 +258,14 @@
   <!-- Footer -->
   <footer class="max-w-2xl w-full text-center pb-10 pt-8 border-t border-slate-800/60">
     <p class="text-slate-500 text-sm">
-      Feito por <a href="https://retroachievements.org/user/blumzeira" target="_blank" class="text-brand-gold hover:underline font-bold">Blumzeira</a>
-      · <a href="https://github.com/blumzeira/Track-Quest" target="_blank" class="text-brand-cyan hover:underline">GitHub</a>
+      Feito por <a href="https://retroachievements.org/user/blumzeira" target="_blank"
+        class="text-brand-gold hover:underline font-bold">Blumzeira</a>
+      · <a href="https://github.com/blumzeira/Track-Quest" target="_blank"
+        class="text-brand-cyan hover:underline">GitHub</a>
     </p>
     <p class="text-slate-600 text-xs mt-2 font-retro tracking-wider">TrackQuest · v1.2 · 2026</p>
   </footer>
 
 </body>
+
 </html>
